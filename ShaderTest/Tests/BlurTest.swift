@@ -16,11 +16,11 @@ struct BlurTest: View {
                     ForEach(rainbow, id: \.self) { color in
                         Rectangle()
                             .fill(color)
-                            .frame(width: 20, height: 100)
+                            .frame(width: 20, height: 300)
                     }
                 }
                 .padding(.horizontal)
-                .background(.white)
+                .background(Color(UIColor.systemBackground))
                 .drawingGroup()
                 .layerEffect(ShaderLibrary.blurTest(.boundingRect), maxSampleOffset: .zero)
                 Text("Blurrs")
