@@ -11,6 +11,20 @@
 		6191AC9C2B440AC3000A4937 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6191AC9B2B440AC3000A4937 /* ContentView.swift */; };
 		6191AC9E2B440AC5000A4937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6191AC9D2B440AC5000A4937 /* Assets.xcassets */; };
 		6191ACA12B440AC5000A4937 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6191ACA02B440AC5000A4937 /* Preview Assets.xcassets */; };
+		619DD4832B54B99500601D38 /* PickGradientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4822B54B99500601D38 /* PickGradientTest.swift */; };
+		619DD4852B54B9A000601D38 /* PickGradient.metal in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4842B54B9A000601D38 /* PickGradient.metal */; };
+		619DD4892B54DD7600601D38 /* ShapingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4882B54DD7600601D38 /* ShapingFunctions.swift */; };
+		619DD48B2B54E35400601D38 /* ShapingFunctions.metal in Sources */ = {isa = PBXBuildFile; fileRef = 619DD48A2B54E35400601D38 /* ShapingFunctions.metal */; };
+		61A87BF72B51C660003B751E /* BlurTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A87BF62B51C660003B751E /* BlurTest.swift */; };
+		61A87BF92B51D17E003B751E /* Blur.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61A87BF82B51D17E003B751E /* Blur.metal */; };
+		61A87BFB2B527061003B751E /* NoiseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A87BFA2B527060003B751E /* NoiseTest.swift */; };
+		61A87BFD2B527089003B751E /* Noise.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61A87BFC2B527089003B751E /* Noise.metal */; };
+		61A87BFF2B527405003B751E /* PixellateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A87BFE2B527405003B751E /* PixellateTest.swift */; };
+		61A87C012B52751C003B751E /* Pixellate.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61A87C002B52751C003B751E /* Pixellate.metal */; };
+		61A87C032B5276C5003B751E /* WaveyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A87C022B5276C5003B751E /* WaveyTest.swift */; };
+		61A87C052B5276D8003B751E /* Wavey.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61A87C042B5276D8003B751E /* Wavey.metal */; };
+		61A87C072B5279FB003B751E /* ColorsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A87C062B5279FB003B751E /* ColorsTest.swift */; };
+		61A87C092B527A10003B751E /* Colors.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61A87C082B527A10003B751E /* Colors.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +33,20 @@
 		6191AC9B2B440AC3000A4937 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6191AC9D2B440AC5000A4937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6191ACA02B440AC5000A4937 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		619DD4822B54B99500601D38 /* PickGradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickGradientTest.swift; sourceTree = "<group>"; };
+		619DD4842B54B9A000601D38 /* PickGradient.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PickGradient.metal; sourceTree = "<group>"; };
+		619DD4882B54DD7600601D38 /* ShapingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapingFunctions.swift; sourceTree = "<group>"; };
+		619DD48A2B54E35400601D38 /* ShapingFunctions.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = ShapingFunctions.metal; sourceTree = "<group>"; };
+		61A87BF62B51C660003B751E /* BlurTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTest.swift; sourceTree = "<group>"; };
+		61A87BF82B51D17E003B751E /* Blur.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Blur.metal; sourceTree = "<group>"; };
+		61A87BFA2B527060003B751E /* NoiseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseTest.swift; sourceTree = "<group>"; };
+		61A87BFC2B527089003B751E /* Noise.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Noise.metal; sourceTree = "<group>"; };
+		61A87BFE2B527405003B751E /* PixellateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixellateTest.swift; sourceTree = "<group>"; };
+		61A87C002B52751C003B751E /* Pixellate.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Pixellate.metal; sourceTree = "<group>"; };
+		61A87C022B5276C5003B751E /* WaveyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveyTest.swift; sourceTree = "<group>"; };
+		61A87C042B5276D8003B751E /* Wavey.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Wavey.metal; sourceTree = "<group>"; };
+		61A87C062B5279FB003B751E /* ColorsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsTest.swift; sourceTree = "<group>"; };
+		61A87C082B527A10003B751E /* Colors.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Colors.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +81,8 @@
 			children = (
 				6191AC992B440AC3000A4937 /* ShaderTestApp.swift */,
 				6191AC9B2B440AC3000A4937 /* ContentView.swift */,
+				619DD4862B54BAAA00601D38 /* Tests */,
+				619DD4872B54C90200601D38 /* Book of Shaders */,
 				6191AC9D2B440AC5000A4937 /* Assets.xcassets */,
 				6191AC9F2B440AC5000A4937 /* Preview Content */,
 			);
@@ -65,6 +95,34 @@
 				6191ACA02B440AC5000A4937 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		619DD4862B54BAAA00601D38 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				619DD4822B54B99500601D38 /* PickGradientTest.swift */,
+				619DD4842B54B9A000601D38 /* PickGradient.metal */,
+				61A87BF62B51C660003B751E /* BlurTest.swift */,
+				61A87BF82B51D17E003B751E /* Blur.metal */,
+				61A87BFA2B527060003B751E /* NoiseTest.swift */,
+				61A87BFC2B527089003B751E /* Noise.metal */,
+				61A87BFE2B527405003B751E /* PixellateTest.swift */,
+				61A87C002B52751C003B751E /* Pixellate.metal */,
+				61A87C022B5276C5003B751E /* WaveyTest.swift */,
+				61A87C042B5276D8003B751E /* Wavey.metal */,
+				61A87C062B5279FB003B751E /* ColorsTest.swift */,
+				61A87C082B527A10003B751E /* Colors.metal */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		619DD4872B54C90200601D38 /* Book of Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				619DD4882B54DD7600601D38 /* ShapingFunctions.swift */,
+				619DD48A2B54E35400601D38 /* ShapingFunctions.metal */,
+			);
+			path = "Book of Shaders";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +195,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61A87BFF2B527405003B751E /* PixellateTest.swift in Sources */,
+				619DD4832B54B99500601D38 /* PickGradientTest.swift in Sources */,
+				61A87C072B5279FB003B751E /* ColorsTest.swift in Sources */,
+				61A87C032B5276C5003B751E /* WaveyTest.swift in Sources */,
+				61A87BF92B51D17E003B751E /* Blur.metal in Sources */,
+				61A87BFB2B527061003B751E /* NoiseTest.swift in Sources */,
+				619DD4892B54DD7600601D38 /* ShapingFunctions.swift in Sources */,
+				61A87BF72B51C660003B751E /* BlurTest.swift in Sources */,
+				61A87C012B52751C003B751E /* Pixellate.metal in Sources */,
 				6191AC9C2B440AC3000A4937 /* ContentView.swift in Sources */,
+				619DD48B2B54E35400601D38 /* ShapingFunctions.metal in Sources */,
+				61A87BFD2B527089003B751E /* Noise.metal in Sources */,
+				619DD4852B54B9A000601D38 /* PickGradient.metal in Sources */,
+				61A87C052B5276D8003B751E /* Wavey.metal in Sources */,
 				6191AC9A2B440AC3000A4937 /* ShaderTestApp.swift in Sources */,
+				61A87C092B527A10003B751E /* Colors.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
