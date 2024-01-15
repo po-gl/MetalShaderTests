@@ -39,8 +39,9 @@ struct ShapingFunctions: View {
                     .font(.title)
                     .fontDesign(.serif)
                 selected.view
-                    .transition(.opacity)
             }
+            .id(selectedViewIdx)
+            .transition(BlurReplaceTransition(configuration: .downUp))
             .padding()
             Spacer()
         }
