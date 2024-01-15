@@ -1,5 +1,5 @@
 //
-//  ShapingFunctions.metal
+//  BoSShapingFunctions.metal
 //  ShaderTest
 //
 //  Created by Porter Glines on 1/14/24.

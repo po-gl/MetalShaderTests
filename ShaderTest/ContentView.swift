@@ -27,7 +27,7 @@ struct ContentView: View {
         Test(view: AnyView(ColorsTest()), title: "Colors Tests")
     ]
     let bookOfShaders: [Test] = [
-        Test(view: AnyView(ShapingFunctions()), title: "Shaping Functions")
+        Test(view: AnyView(BoSShapingFunctions()), title: "Shaping Functions")
     ]
     var body: some View {
         NavigationStack {

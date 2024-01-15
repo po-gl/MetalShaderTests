@@ -1,5 +1,5 @@
 //
-//  ShapingFunctions.swift
+//  BoSShapingFunctions.swift
 //  ShaderTest
 //
 //  Created by Porter Glines on 1/14/24.
@@ -11,7 +11,7 @@
 
 import SwiftUI
 
-struct ShapingFunctions: View {
+struct BoSShapingFunctions: View {
     var views : [Test] = [
         Test(view: AnyView(SimpleFunction()), title: "Simple"),
         Test(view: AnyView(ExpFunction()), title: "Exp"),
@@ -32,6 +32,7 @@ struct ShapingFunctions: View {
                 }
             }
             .pickerStyle(.segmented)
+            .padding()
             
             let selected = views[selectedViewIdx]
             VStack {
@@ -42,7 +43,6 @@ struct ShapingFunctions: View {
             }
             .id(selectedViewIdx)
             .transition(BlurReplaceTransition(configuration: .downUp))
-            .padding()
             Spacer()
         }
         .padding()
@@ -101,5 +101,5 @@ struct ImpulseFunction: View {
 }
 
 #Preview {
-    ShapingFunctions()
+    BoSShapingFunctions()
 }
