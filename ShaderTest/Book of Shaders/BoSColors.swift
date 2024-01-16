@@ -68,41 +68,39 @@ struct MixingColorChannels: View {
 
     let t0 = Date()
     var body: some View {
-        ScrollView {
-            TimelineView(.animation) { _ in
-                Rectangle()
-                    .frame(width: 300, height: 300)
-                    .colorEffect(ShaderLibrary.mixColorChannels(.boundingRect,
-                                                                .float(i1),
-                                                                .float(i2),
-                                                                .float(i3)))
-                    .allowsHitTesting(false)
+        TimelineView(.animation) { _ in
+            Rectangle()
+                .frame(width: 300, height: 300)
+                .colorEffect(ShaderLibrary.mixColorChannels(.boundingRect,
+                                                            .float(i1),
+                                                            .float(i2),
+                                                            .float(i3)))
+                .allowsHitTesting(false)
+        }
+        
+        GroupBox {
+            HStack {
+                Text("R influence")
+                Spacer()
+                Text(String(format: "%.3f", i1))
             }
-            
-            GroupBox {
-                HStack {
-                    Text("R influence")
-                    Spacer()
-                    Text(String(format: "%.3f", i1))
-                }
-                Slider(value: $i1, in: 0.0...2.0)
+            Slider(value: $i1, in: 0.0...2.0)
+        }
+        GroupBox {
+            HStack {
+                Text("G influence")
+                Spacer()
+                Text(String(format: "%.3f", i2))
             }
-            GroupBox {
-                HStack {
-                    Text("G influence")
-                    Spacer()
-                    Text(String(format: "%.3f", i2))
-                }
-                Slider(value: $i2, in: 0.0...2.0)
+            Slider(value: $i2, in: 0.0...2.0)
+        }
+        GroupBox {
+            HStack {
+                Text("B influence")
+                Spacer()
+                Text(String(format: "%.3f", i3))
             }
-            GroupBox {
-                HStack {
-                    Text("B influence")
-                    Spacer()
-                    Text(String(format: "%.3f", i3))
-                }
-                Slider(value: $i3, in: 0.0...2.0)
-            }
+            Slider(value: $i3, in: 0.0...2.0)
         }
     }
 }

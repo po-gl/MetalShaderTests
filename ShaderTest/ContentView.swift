@@ -36,8 +36,10 @@ struct ContentView: View {
                 Section("Tests") {
                     ForEach(tests) { test in
                         NavigationLink {
-                            test.view
-                                .navigationTitle(test.title)
+                            ScrollView {
+                                test.view
+                                    .navigationTitle(test.title)
+                            }
                         } label: {
                             Text(test.title)
                         }
@@ -46,8 +48,10 @@ struct ContentView: View {
                 Section("Book of Shaders") {
                     ForEach(bookOfShaders) { test in
                         NavigationLink {
-                            test.view
-                                .navigationTitle(test.title)
+                            ScrollView {
+                                test.view
+                                    .navigationTitle(test.title)
+                            }
                         } label: {
                             Text(test.title)
                         }
