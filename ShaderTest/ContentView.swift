@@ -24,11 +24,12 @@ struct ContentView: View {
         Test(view: AnyView(NoiseTest()), title: "Noise Tests"),
         Test(view: AnyView(PixellateTest()), title: "Pixellate Tests"),
         Test(view: AnyView(WaveyTest()), title: "Wavey Tests"),
-        Test(view: AnyView(ColorsTest()), title: "Colors Tests")
+        Test(view: AnyView(ColorsTest()), title: "Colors Tests"),
     ]
     let bookOfShaders: [Test] = [
         Test(view: AnyView(BoSShapingFunctions()), title: "Shaping Functions"),
-        Test(view: AnyView(BoSColors()), title: "Colors")
+        Test(view: AnyView(BoSColors()), title: "Colors"),
+        Test(view: AnyView(BoSShapes()), title: "Shapes"),
     ]
     var body: some View {
         NavigationStack {

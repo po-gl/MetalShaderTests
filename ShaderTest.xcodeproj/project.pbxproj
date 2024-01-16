@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		61395F572B54F8CE009AE604 /* BoSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61395F562B54F8CE009AE604 /* BoSColors.swift */; };
 		61395F592B54FA0A009AE604 /* BoSColors.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61395F582B54FA0A009AE604 /* BoSColors.metal */; };
+		61395F5B2B552138009AE604 /* BoSShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61395F5A2B552138009AE604 /* BoSShapes.swift */; };
+		61395F5D2B552146009AE604 /* BoSShapes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61395F5C2B552146009AE604 /* BoSShapes.metal */; };
 		6191AC9A2B440AC3000A4937 /* ShaderTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6191AC992B440AC3000A4937 /* ShaderTestApp.swift */; };
 		6191AC9C2B440AC3000A4937 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6191AC9B2B440AC3000A4937 /* ContentView.swift */; };
 		6191AC9E2B440AC5000A4937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6191AC9D2B440AC5000A4937 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		61395F562B54F8CE009AE604 /* BoSColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoSColors.swift; sourceTree = "<group>"; };
 		61395F582B54FA0A009AE604 /* BoSColors.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BoSColors.metal; sourceTree = "<group>"; };
+		61395F5A2B552138009AE604 /* BoSShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoSShapes.swift; sourceTree = "<group>"; };
+		61395F5C2B552146009AE604 /* BoSShapes.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BoSShapes.metal; sourceTree = "<group>"; };
 		6191AC962B440AC3000A4937 /* ShaderTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShaderTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6191AC992B440AC3000A4937 /* ShaderTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderTestApp.swift; sourceTree = "<group>"; };
 		6191AC9B2B440AC3000A4937 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				619DD48A2B54E35400601D38 /* BoSShapingFunctions.metal */,
 				61395F562B54F8CE009AE604 /* BoSColors.swift */,
 				61395F582B54FA0A009AE604 /* BoSColors.metal */,
+				61395F5A2B552138009AE604 /* BoSShapes.swift */,
+				61395F5C2B552146009AE604 /* BoSShapes.metal */,
 			);
 			path = "Book of Shaders";
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61395F5D2B552146009AE604 /* BoSShapes.metal in Sources */,
 				61A87BFF2B527405003B751E /* PixellateTest.swift in Sources */,
 				619DD4832B54B99500601D38 /* PickGradientTest.swift in Sources */,
 				61395F572B54F8CE009AE604 /* BoSColors.swift in Sources */,
@@ -209,6 +216,7 @@
 				61A87BF92B51D17E003B751E /* Blur.metal in Sources */,
 				61A87BFB2B527061003B751E /* NoiseTest.swift in Sources */,
 				619DD4892B54DD7600601D38 /* BoSShapingFunctions.swift in Sources */,
+				61395F5B2B552138009AE604 /* BoSShapes.swift in Sources */,
 				61A87BF72B51C660003B751E /* BlurTest.swift in Sources */,
 				61A87C012B52751C003B751E /* Pixellate.metal in Sources */,
 				61395F592B54FA0A009AE604 /* BoSColors.metal in Sources */,
