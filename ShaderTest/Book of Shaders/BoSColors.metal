@@ -8,6 +8,15 @@
 #include <metal_stdlib>
 using namespace metal;
 
+/// cosine based color palette
+half3 palette(float t) {
+    half3 a = half3(0.5, 0.5, 0.5);
+    half3 b = half3(0.5, 0.5, 0.5);
+    half3 c = half3(1.0, 1.0, 1.0);
+    half3 d = half3(0.263, 0.416, 0.557);
+    return a + b*cos(6.28318*(c*t+d));
+}
+
 inline float colorsPlot(float2 st, float pct) {
     return smoothstep(pct-0.01, pct, st.y) - smoothstep(pct, pct+0.01, st.y);
 }

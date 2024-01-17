@@ -30,6 +30,8 @@ struct ContentView: View {
         Test(view: AnyView(BoSShapingFunctions()), title: "Shaping Functions"),
         Test(view: AnyView(BoSColors()), title: "Colors"),
         Test(view: AnyView(BoSShapes()), title: "Shapes"),
+        Test(view: AnyView(BoSRandom()), title: "Random"),
+        Test(view: AnyView(BoSNoise()), title: "Noise"),
     ]
     var body: some View {
         NavigationStack {
