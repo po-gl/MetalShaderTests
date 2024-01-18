@@ -56,14 +56,20 @@ extern float random(float2 st);
     return color;
 }
 
-float halftoneGrid(float2 st, float gridSize = 0.05) {
+float2x2 rotate(float angle) {
+    return float2x2(cos(angle), -sin(angle),
+                    sin(angle), cos(angle));
+}
+
+float halftoneGrid(float2 st, float gridSize = 0.05, float angle = 0.0) {
     st.x -= (1.0 - gridSize)/2;
+    float2 rot_st = rotate(angle) * st;
     
-    float2 gridPos = floor(st / gridSize);
+    float2 gridPos = floor(rot_st / gridSize);
     float2 center = gridPos * gridSize + gridSize/2;
     float radius = gridSize/2 + gridSize/4 - (st.y * st.y * gridSize * 1.0);
     
-    float dist = distance(st, center);
+    float dist = distance(rot_st, center);
     if (dist < radius) {
         return 1.0;
     }
@@ -76,21 +82,26 @@ float halftoneGrid(float2 st, float gridSize = 0.05) {
     uv.x *= boundingRect.z / boundingRect.w;
     
     half4 color = 0.0;
+    float colorSize = size * 1.0;
     
-    half4 cyan = half4(0.27, 0.55, 0.77, 0.0);
-    cyan.a = halftoneGrid(float2(uv.x-0.009, uv.y-0.000), size);
+    half4 cyan = half4(0.53, 0.81, 0.92, 0.0);
+    cyan.a = halftoneGrid(float2(uv.x-0.009, uv.y-0.000), colorSize, 0.26);
     color = mix(color, cyan, 1.0 - color.a);
     
     half4 magenta = half4(0.77, 0.25, 0.40, 0.0);
-    magenta.a = halftoneGrid(float2(uv.x+0.008, uv.y-0.005), size);
+    magenta.a = halftoneGrid(float2(uv.x+0.008, uv.y-0.005), colorSize, -0.08);
     color = mix(color, magenta, 1.0 - color.a);
     
+    half4 green = half4(0.35, 0.63, 0.55, 0.0);
+    green.a = halftoneGrid(float2(uv.x-0.009, uv.y-0.000), colorSize, 0.06);
+    color = mix(color, green, 1.0 - color.a);
+    
     half4 yellow = half4(0.89, 0.85, 0.41, 0.0);
-    yellow.a = halftoneGrid(float2(uv.x+0.012, uv.y+0.006), size) * 0.8;
+    yellow.a = halftoneGrid(float2(uv.x+0.012, uv.y+0.006), colorSize, -0.01) * 0.8;
     color = mix(color, yellow, 1.0 - color.a);
     
     half4 black = 0.0;
-    black.a = halftoneGrid(float2(uv.x, uv.y), size);
+    black.a = halftoneGrid(float2(uv.x, uv.y), size*0.9, 0.0);
     color = mix(black, color, 1.0 - black.a);
     
     // Compositor expects premultiplied colors for alpha blending

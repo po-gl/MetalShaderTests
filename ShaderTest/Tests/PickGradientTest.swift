@@ -201,7 +201,7 @@ struct HalfTone: View {
         VStack {
             TimelineView(.animation) { _ in
                 RoundedRectangle(cornerRadius: 10)
-                    .frame(height: 300)
+                    .frame(height: 200)
                     .colorEffect(ShaderLibrary.halftone(.boundingRect,
                                                         .float(t0.timeIntervalSinceNow),
                                                         .float(size)))
@@ -224,5 +224,5 @@ struct HalfTone: View {
     ScrollView {
         PickGradientTest()
     }
-    .background(.gray)
+    .background(Color(UIColor(red: 0.95, green: 0.92, blue: 0.91, alpha: 1.0)))
 }
