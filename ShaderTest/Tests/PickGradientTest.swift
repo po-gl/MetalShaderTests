@@ -12,9 +12,10 @@ struct PickGradientTest: View {
         Test(view: AnyView(BasicPickGradient()), title: "Basic"),
         Test(view: AnyView(ColorEffectPickGradient()), title: "Recreated"),
         Test(view: AnyView(HalfTone()), title: "Halftone"),
+        Test(view: AnyView(SubtractiveHalfTone()), title: "Subtractive"),
     ]
 
-    @State var selectedViewIdx = 2
+    @State var selectedViewIdx = 3
     var selectedViewIdxBinding: Binding<Int> {
         Binding(get: { selectedViewIdx },
                 set: { val in withAnimation { selectedViewIdx = val }})
@@ -215,6 +216,38 @@ struct HalfTone: View {
                     Text(String(format: "%.3f", size))
                 }
                 Slider(value: $size, in: 0.0001...0.2)
+            }
+        }
+    }
+}
+
+struct SubtractiveHalfTone: View {
+    @State var size = 0.05;
+    @State var saturation = 0.7;
+    var body: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 10)
+                .frame(height: 200)
+                .colorEffect(ShaderLibrary.subtractiveHalftone(.boundingRect,
+                                                               .float(size),
+                                                               .float(saturation)))
+                .allowsHitTesting(false)
+            
+            GroupBox {
+                HStack {
+                    Text("Size:")
+                    Spacer()
+                    Text(String(format: "%.3f", size))
+                }
+                Slider(value: $size, in: 0.0001...0.2)
+            }
+            GroupBox {
+                HStack {
+                    Text("Saturation:")
+                    Spacer()
+                    Text(String(format: "%.3f", saturation))
+                }
+                Slider(value: $saturation, in: 0.0...1.5)
             }
         }
     }

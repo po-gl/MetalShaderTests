@@ -107,3 +107,52 @@ float halftoneGrid(float2 st, float gridSize = 0.05, float angle = 0.0) {
     // Compositor expects premultiplied colors for alpha blending
     return half4(color.rgb * color.a, color.a);
 }
+
+half4 submix(half4 a, half4 b) {
+    return half4(a.rgb * (1.0 - b.rgb * b.a), max(a.a, b.a));
+}
+
+half3 sat(half3 rgb, float intensity) {
+    half3 lum = half3(0.2125, 0.7154, 0.0721);
+    half3 grayscale = half3(dot(rgb, lum));
+    return mix(grayscale, rgb, intensity);
+}
+
+[[ stitchable ]] half4 subtractiveHalftone(float2 pos, half4 existingColor, float4 boundingRect, float size, float saturation) {
+    float2 uv = pos / boundingRect.zw;
+    uv.y = 1.0 - uv.y;
+    uv.x *= boundingRect.z / boundingRect.w;
+
+    half4 color = 1.0;
+    float colorSize = size * 1.0;
+
+    half4 cyan = half4(1.0, 0.0, 0.0, 0.0);
+    cyan.a = halftoneGrid(float2(uv.x-0.009, uv.y-0.000), colorSize, 0.26);
+    color = submix(color, cyan);
+
+    half4 magenta = half4(0.0, 1.0, 0.0, 0.0);
+    magenta.a = halftoneGrid(float2(uv.x+0.008, uv.y-0.005), colorSize, -0.08);
+    color = submix(color, magenta);
+    
+    half4 yellow = half4(0.0, 0.0, 1.0, 0.0);
+    yellow.a = halftoneGrid(float2(uv.x+0.012, uv.y+0.006), colorSize, -0.01) * 0.8;
+    color = submix(color, yellow);
+
+    half4 black = 1.0;
+    black.a = halftoneGrid(float2(uv.x, uv.y), size*0.9, 0.0);
+    color = submix(color, black);
+    
+    // Change saturation
+    color = half4(sat(color.rgb, saturation), color.a);
+    
+    // Remove white background
+    float f = smoothstep(0.95h, 1.0h, color.r) *
+              smoothstep(0.95h, 1.0h, color.g) *
+              smoothstep(0.95h, 1.0h, color.b);
+    if (f == 1.0) {
+        color.a = 0.0;
+    }
+
+    // Compositor expects premultiplied colors for alpha blending
+    return half4(color.rgb * color.a, color.a);
+}
