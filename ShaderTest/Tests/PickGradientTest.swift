@@ -187,7 +187,7 @@ struct ColorEffectPickGradient: View {
             }
             .padding(.bottom)
             
-            Text("PRE-MULTIPLIED ALPHA BLENDING.\nIt isn't well documented as a requirement by Apple, but the compositing layer expects pre-multiplied alpha blended colors.\nOtherwise two rectangles have their colors shifted. This appears to be a Metal bug where alpha values are not properly respected in .colorEffect(:).")
+            Text("PRE-MULTIPLIED ALPHA BLENDING.\nIt isn't well documented as a requirement by Apple, but the compositing layer expects pre-multiplied alpha blended colors.\nOtherwise two rectangles have their colors shifted.")
                 .fontDesign(.rounded)
                 .padding()
         }
