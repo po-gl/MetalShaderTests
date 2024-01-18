@@ -11,9 +11,10 @@ struct PickGradientTest: View {
     var views : [Test] = [
         Test(view: AnyView(BasicPickGradient()), title: "Basic"),
         Test(view: AnyView(ColorEffectPickGradient()), title: "Recreated"),
+        Test(view: AnyView(HalfTone()), title: "Halftone"),
     ]
 
-    @State var selectedViewIdx = 1
+    @State var selectedViewIdx = 2
     var selectedViewIdxBinding: Binding<Int> {
         Binding(get: { selectedViewIdx },
                 set: { val in withAnimation { selectedViewIdx = val }})
@@ -193,8 +194,35 @@ struct ColorEffectPickGradient: View {
     }
 }
 
+struct HalfTone: View {
+    let t0 = Date()
+    @State var size = 0.05;
+    var body: some View {
+        VStack {
+            TimelineView(.animation) { _ in
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(height: 300)
+                    .colorEffect(ShaderLibrary.halftone(.boundingRect,
+                                                        .float(t0.timeIntervalSinceNow),
+                                                        .float(size)))
+                    .allowsHitTesting(false)
+            }
+            
+            GroupBox {
+                HStack {
+                    Text("Size:")
+                    Spacer()
+                    Text(String(format: "%.3f", size))
+                }
+                Slider(value: $size, in: 0.0001...0.2)
+            }
+        }
+    }
+}
+
 #Preview {
     ScrollView {
         PickGradientTest()
     }
+    .background(.gray)
 }

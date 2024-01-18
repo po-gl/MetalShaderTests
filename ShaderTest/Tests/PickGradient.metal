@@ -55,3 +55,44 @@ extern float random(float2 st);
     
     return color;
 }
+
+float halftoneGrid(float2 st, float gridSize = 0.05) {
+    st.x -= (1.0 - gridSize)/2;
+    
+    float2 gridPos = floor(st / gridSize);
+    float2 center = gridPos * gridSize + gridSize/2;
+    float radius = gridSize/2 + gridSize/4 - (st.y * st.y * gridSize * 1.0);
+    
+    float dist = distance(st, center);
+    if (dist < radius) {
+        return 1.0;
+    }
+    return 0.0;
+}
+
+[[ stitchable ]] half4 halftone(float2 pos, half4 existingColor, float4 boundingRect, float t, float size) {
+    float2 uv = pos / boundingRect.zw;
+    uv.y = 1.0 - uv.y;
+    uv.x *= boundingRect.z / boundingRect.w;
+    
+    half4 color = 0.0;
+    
+    half4 cyan = half4(0.27, 0.55, 0.77, 0.0);
+    cyan.a = halftoneGrid(float2(uv.x-0.009, uv.y-0.000), size);
+    color = mix(color, cyan, 1.0 - color.a);
+    
+    half4 magenta = half4(0.77, 0.25, 0.40, 0.0);
+    magenta.a = halftoneGrid(float2(uv.x+0.008, uv.y-0.005), size);
+    color = mix(color, magenta, 1.0 - color.a);
+    
+    half4 yellow = half4(0.89, 0.85, 0.41, 0.0);
+    yellow.a = halftoneGrid(float2(uv.x+0.012, uv.y+0.006), size) * 0.8;
+    color = mix(color, yellow, 1.0 - color.a);
+    
+    half4 black = 0.0;
+    black.a = halftoneGrid(float2(uv.x, uv.y), size);
+    color = mix(black, color, 1.0 - black.a);
+    
+    // Compositor expects premultiplied colors for alpha blending
+    return half4(color.rgb * color.a, color.a);
+}
