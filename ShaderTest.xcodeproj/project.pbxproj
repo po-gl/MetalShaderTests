@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610A4F8C2EDE45BF001EB006 /* TuringPatterns.metal in Sources */ = {isa = PBXBuildFile; fileRef = 610A4F8B2EDE45B6001EB006 /* TuringPatterns.metal */; };
 		61395F572B54F8CE009AE604 /* BoSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61395F562B54F8CE009AE604 /* BoSColors.swift */; };
 		61395F592B54FA0A009AE604 /* BoSColors.metal in Sources */ = {isa = PBXBuildFile; fileRef = 61395F582B54FA0A009AE604 /* BoSColors.metal */; };
 		61395F5B2B552138009AE604 /* BoSShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61395F5A2B552138009AE604 /* BoSShapes.swift */; };
@@ -19,6 +20,8 @@
 		6191AC9C2B440AC3000A4937 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6191AC9B2B440AC3000A4937 /* ContentView.swift */; };
 		6191AC9E2B440AC5000A4937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6191AC9D2B440AC5000A4937 /* Assets.xcassets */; };
 		6191ACA12B440AC5000A4937 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6191ACA02B440AC5000A4937 /* Preview Assets.xcassets */; };
+		6193D7E92EC8611900457DF5 /* TuringPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6193D7E82EC8610F00457DF5 /* TuringPatterns.swift */; };
+		6193D7EB2EC91E2C00457DF5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6193D7EA2EC91E2900457DF5 /* Test.swift */; };
 		619DD4832B54B99500601D38 /* PickGradientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4822B54B99500601D38 /* PickGradientTest.swift */; };
 		619DD4852B54B9A000601D38 /* PickGradient.metal in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4842B54B9A000601D38 /* PickGradient.metal */; };
 		619DD4892B54DD7600601D38 /* BoSShapingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619DD4882B54DD7600601D38 /* BoSShapingFunctions.swift */; };
@@ -36,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		610A4F8B2EDE45B6001EB006 /* TuringPatterns.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = TuringPatterns.metal; sourceTree = "<group>"; };
 		61395F562B54F8CE009AE604 /* BoSColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoSColors.swift; sourceTree = "<group>"; };
 		61395F582B54FA0A009AE604 /* BoSColors.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BoSColors.metal; sourceTree = "<group>"; };
 		61395F5A2B552138009AE604 /* BoSShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoSShapes.swift; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 		6191AC9B2B440AC3000A4937 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6191AC9D2B440AC5000A4937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6191ACA02B440AC5000A4937 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6193D7E82EC8610F00457DF5 /* TuringPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuringPatterns.swift; sourceTree = "<group>"; };
+		6193D7EA2EC91E2900457DF5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		619DD4822B54B99500601D38 /* PickGradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickGradientTest.swift; sourceTree = "<group>"; };
 		619DD4842B54B9A000601D38 /* PickGradient.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PickGradient.metal; sourceTree = "<group>"; };
 		619DD4882B54DD7600601D38 /* BoSShapingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoSShapingFunctions.swift; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 			children = (
 				6191AC992B440AC3000A4937 /* ShaderTestApp.swift */,
 				6191AC9B2B440AC3000A4937 /* ContentView.swift */,
+				6193D7EA2EC91E2900457DF5 /* Test.swift */,
 				619DD4862B54BAAA00601D38 /* Tests */,
 				619DD4872B54C90200601D38 /* Book of Shaders */,
 				6191AC9D2B440AC5000A4937 /* Assets.xcassets */,
@@ -116,6 +123,8 @@
 		619DD4862B54BAAA00601D38 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				610A4F8B2EDE45B6001EB006 /* TuringPatterns.metal */,
+				6193D7E82EC8610F00457DF5 /* TuringPatterns.swift */,
 				619DD4822B54B99500601D38 /* PickGradientTest.swift */,
 				619DD4842B54B9A000601D38 /* PickGradient.metal */,
 				61A87BF62B51C660003B751E /* BlurTest.swift */,
@@ -222,6 +231,7 @@
 				61395F5F2B565B16009AE604 /* BoSRandom.swift in Sources */,
 				61395F5D2B552146009AE604 /* BoSShapes.metal in Sources */,
 				61A87BFF2B527405003B751E /* PixellateTest.swift in Sources */,
+				610A4F8C2EDE45BF001EB006 /* TuringPatterns.metal in Sources */,
 				619DD4832B54B99500601D38 /* PickGradientTest.swift in Sources */,
 				61395F632B565B2E009AE604 /* BoSRandom.metal in Sources */,
 				61395F572B54F8CE009AE604 /* BoSColors.swift in Sources */,
@@ -231,12 +241,14 @@
 				61A87BFB2B527061003B751E /* NoiseTest.swift in Sources */,
 				619DD4892B54DD7600601D38 /* BoSShapingFunctions.swift in Sources */,
 				61395F652B565B37009AE604 /* BoSNoise.swift in Sources */,
+				6193D7E92EC8611900457DF5 /* TuringPatterns.swift in Sources */,
 				61395F5B2B552138009AE604 /* BoSShapes.swift in Sources */,
 				61A87BF72B51C660003B751E /* BlurTest.swift in Sources */,
 				61A87C012B52751C003B751E /* Pixellate.metal in Sources */,
 				61395F612B565B23009AE604 /* BoSNoise.metal in Sources */,
 				61395F592B54FA0A009AE604 /* BoSColors.metal in Sources */,
 				6191AC9C2B440AC3000A4937 /* ContentView.swift in Sources */,
+				6193D7EB2EC91E2C00457DF5 /* Test.swift in Sources */,
 				619DD48B2B54E35400601D38 /* BoSShapingFunctions.metal in Sources */,
 				61A87BFD2B527089003B751E /* Noise.metal in Sources */,
 				619DD4852B54B9A000601D38 /* PickGradient.metal in Sources */,

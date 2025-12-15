@@ -7,18 +7,9 @@
 
 import SwiftUI
 
-struct Test : Identifiable {
-    var view: AnyView
-    var title: String
-    var id = UUID()
-
-    static func == (lhs: Test, rhs: Test) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
 struct ContentView: View {
     let tests: [Test] = [
+        Test(view: AnyView(TuringPatterns()), title: "Reaction Diffusion Patterns"),
         Test(view: AnyView(PickGradientTest()), title: "Pick Gradient Tests"),
         Test(view: AnyView(BlurTest()), title: "Blur Tests"),
         Test(view: AnyView(NoiseTest()), title: "Noise Tests"),

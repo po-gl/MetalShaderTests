@@ -23,7 +23,7 @@ struct PickGradientTest: View {
 
     var body: some View {
         VStack {
-            Picker("Pick a Shapes Shader", selection: selectedViewIdxBinding) {
+            Picker("Pick a Shader", selection: selectedViewIdxBinding) {
                 ForEach(Array(views.enumerated()), id: \.offset) { i, view in
                     Text(view.title).tag(i)
                 }

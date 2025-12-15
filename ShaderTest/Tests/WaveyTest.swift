@@ -16,16 +16,21 @@ struct WaveyTest: View {
     var body: some View {
         VStack {
             TimelineView(.animation) { _ in
+                // Compute elapsed on the main actor to avoid capturing @State in a @Sendable closure
+                let elapsed = -t0.timeIntervalSinceNow
+                let s = speed
+                let k = strength
+                let f = frequency
                 Image(systemName: "figure.walk.motion")
                     .font(.system(size: 100))
                     .visualEffect { content, geometry in
                         content
                             .distortionEffect(ShaderLibrary.wave(
-                                .float(t0.timeIntervalSinceNow),
+                                .float(elapsed),
                                 .float2(geometry.size),
-                                .float(speed),
-                                .float(strength),
-                                .float(frequency)
+                                .float(s),
+                                .float(k),
+                                .float(f)
                             ), maxSampleOffset: .zero)
                     }
             }
