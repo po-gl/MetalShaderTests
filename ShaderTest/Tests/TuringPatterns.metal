@@ -8,21 +8,46 @@
 #include <metal_stdlib>
 using namespace metal;
 
+float2 random_turing(float2 st) {
+    st = float2( dot(st, float2(127.1, 311.7)), dot(st, float2(269.5, 183.3)));
+    return -1.0 + 2.0 * fract(sin(st) * 43758.5453123);
+}
+
+float gradient_noise_turing(float2 st) {
+    float2 i = floor(st);
+    float2 f = fract(st);
+    float2 u = f*f*(3.0-2.0*f);
+    
+    return mix( mix( dot( random_turing(i + float2(0.0, 0.0)), f - float2(0.0, 0.0) ),
+                     dot( random_turing(i + float2(1.0, 0.0)), f - float2(1.0, 0.0) ), u.x),
+                mix( dot( random_turing(i + float2(0.0, 1.0)), f - float2(0.0, 1.0) ),
+                     dot( random_turing(i + float2(1.0, 1.0)), f - float2(1.0, 1.0) ), u.x), u.y);
+}
+
 // Mark: Initialization
+
+struct InitUniforms {
+    float4 rect; // x, y, width, height
+};
 
 [[kernel]]
 void init_simulation(texture2d<half, access::write> outTexture [[texture(0)]],
+                     constant InitUniforms &uniforms [[buffer(0)]],
                      uint2 gid [[thread_position_in_grid]]) {
+    float2 uv = float2(gid) / float2(outTexture.get_width(), outTexture.get_height());
+    float4 r = uniforms.rect;
+    
     half chemA = 1.0;
     half chemB = 0.0;
-    half s = 50;
+    float threshold = 0.50;
+    float scale = 20.0;
     
-    uint2 texCenter = uint2(outTexture.get_width(), outTexture.get_height()) / 2;
-    if (gid.x > texCenter.x - s && gid.x < texCenter.x + s &&
-        gid.y > texCenter.y - s && gid.y < texCenter.y + s) {
+    if (uv.x >= r.x && uv.x <= (r.x + r.z) &&
+        uv.y >= r.y && uv.y <= (r.y + r.w) &&
+        gradient_noise_turing(uv * scale) * 0.5 + 0.5 > threshold) {
         chemB = 1.0;
     }
-    
+
     outTexture.write(half4(chemA, chemB, 0.0, 1.0), gid);
 }
 
@@ -47,14 +72,21 @@ half2 laplacian(texture2d<half, access::read> tex, uint2 pos) {
     return (0.2 * neighbors + 0.05 * diagonals) - center;
 }
 
+struct SimUniforms {
+    float feed;
+    float kill;
+};
+
 [[kernel]]
 void reaction_diffusion(texture2d<half, access::read> inTexture [[texture(0)]],
                         texture2d<half, access::write> outTexture [[texture(1)]],
+                        constant SimUniforms &simUniforms [[buffer(0)]],
                         uint2 gid [[thread_position_in_grid]]) {
     half dt = 0.5;
     half da = 1.0, db = 0.5;
-    half feed = 0.055, kill = 0.062;
-    
+    half feed = simUniforms.feed, kill = simUniforms.kill;
+//    half feed = 0.055, kill = 0.062;
+
     half2 state = inTexture.read(gid).xy;
     half2 l = laplacian(inTexture, gid);
     half a = state.x, b = state.y;

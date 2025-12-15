@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     let tests: [Test] = [
-        Test(view: AnyView(TuringPatterns()), title: "Reaction Diffusion Patterns"),
+        Test(view: AnyView(TuringPatterns()), title: "Reaction Diffusion"),
         Test(view: AnyView(PickGradientTest()), title: "Pick Gradient Tests"),
         Test(view: AnyView(BlurTest()), title: "Blur Tests"),
         Test(view: AnyView(NoiseTest()), title: "Noise Tests"),
