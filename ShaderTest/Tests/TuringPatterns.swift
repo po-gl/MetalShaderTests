@@ -15,6 +15,7 @@ struct TuringPatterns: View {
     Test(view: AnyView(BlobsTuringPattern()), title: "Blobs"),
     Test(view: AnyView(HypnoTuringPattern()), title: "Hypno"),
     Test(view: AnyView(MitosisTuringPattern()), title: "Mitosis"),
+    Test(view: AnyView(ControlledTuringPattern()), title: "Control"),
   ]
 
   @State var selectedViewIdx = 0
@@ -49,44 +50,61 @@ struct TuringPatterns: View {
 }
 
 struct ClassicTuringPattern: View {
-  var body: some View {
-      MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.44, 0.44, 0.14, 0.10)),
-                           simUniforms: SimUniforms(feed: 0.055, kill: 0.062))
-          .frame(minHeight: 400)
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-  }
+    var body: some View {
+        MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.44, 0.44, 0.14, 0.10)),
+                             simUniforms: SimUniforms(feed: 0.055, kill: 0.062))
+        .frame(minHeight: 400)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
 }
 
 struct BlobsTuringPattern: View {
-  var body: some View {
-      MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
-                           simUniforms: SimUniforms(feed: 0.085, kill: 0.0585))
-          .frame(minHeight: 400)
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-  }
+    var body: some View {
+        MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
+                             simUniforms: SimUniforms(feed: 0.085, kill: 0.0585))
+        .frame(minHeight: 400)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
 }
 
 struct HypnoTuringPattern: View {
-  var body: some View {
-      MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
-                           simUniforms: SimUniforms(feed: 0.018, kill: 0.051))
-          .frame(minHeight: 400)
-          .clipShape(RoundedRectangle(cornerRadius: 20))
-  }
+    var body: some View {
+        MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
+                             simUniforms: SimUniforms(feed: 0.018, kill: 0.051))
+        .frame(minHeight: 400)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
 }
 
 struct MitosisTuringPattern: View {
+    var body: some View {
+        MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
+                             simUniforms: SimUniforms(feed: 0.0367, kill: 0.0649))
+        .frame(minHeight: 400)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+
+struct ControlledTuringPattern: View {
   var body: some View {
-      MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.325, 0.40, 0.40, 0.25)),
-                           simUniforms: SimUniforms(feed: 0.0367, kill: 0.0649))
-          .frame(minHeight: 400)
-          .clipShape(RoundedRectangle(cornerRadius: 20))
+      MTKViewRepresentable(initUniforms: InitUniforms(rect: simd_float4(0.1, 0.9, 0.8, 0.05)),
+                           simUniforms: SimUniforms(feed: 0.055,
+                                                    kill: 0.062,
+                                                    feed2: 0.085,
+                                                    kill2: 0.0585,
+                                                    threshold: 0.25),
+                           simSettings: SimSettings(resolution: 1224,
+                                                    maxSimSteps: 34_000,
+                                                    simSubSteps: 100))
+      .frame(height: 100)
+      .clipShape(RoundedRectangle(cornerRadius: 20))
   }
 }
 
 struct MTKViewRepresentable: UIViewRepresentable {
     let initUniforms: InitUniforms
     let simUniforms: SimUniforms
+    var simSettings: SimSettings?
 
     func makeUIView(context: Context) -> UIView {
         let mtkView = MTKView()
@@ -105,7 +123,9 @@ struct MTKViewRepresentable: UIViewRepresentable {
     }
     
     func makeCoordinator() -> Renderer {
-        Renderer(initUniforms, simUniforms)
+        Renderer(initUniforms,
+                 simUniforms,
+                 simSettings)
     }
 }
 
@@ -121,15 +141,21 @@ class Renderer: NSObject, MTKViewDelegate {
     var textureIndex = 0
     
     var timeStart = Date()
-    
+    var currentStep: Int = 0
+
     var initUniforms: InitUniforms
     var simUniforms: SimUniforms
-    var simSteps: Int
     
-    init(_ initUniforms: InitUniforms, _ simUniforms: SimUniforms, simSteps: Int = 50) {
+    var simSettings: SimSettings = SimSettings(resolution: 512,
+                                               maxSimSteps: 0,
+                                               simSubSteps: 50)
+
+    init(_ initUniforms: InitUniforms,
+         _ simUniforms: SimUniforms,
+         _ simSettings: SimSettings?) {
         self.initUniforms = initUniforms
         self.simUniforms = simUniforms
-        self.simSteps = simSteps
+        self.simSettings = simSettings ?? self.simSettings
         super.init()
     }
     
@@ -161,7 +187,7 @@ class Renderer: NSObject, MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         guard size.width > 0.1 && size.height > 0.1 else { return }
         
-        let simRes = 512
+        let simRes = simSettings.resolution
         let ratio = size.width / size.height
         guard ratio.isFinite && ratio > 0 else { return }
         
@@ -210,24 +236,27 @@ class Renderer: NSObject, MTKViewDelegate {
         }
         
         // Simulation Steps
-        for _ in 0..<self.simSteps {
-            let inTex = textureIndex == 0 ? tex0 : tex1
-            let outTex = textureIndex == 0 ? tex1 : tex0
-            
-            guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { break }
-            computeEncoder.setComputePipelineState(simPipelineState)
-            computeEncoder.setTexture(inTex, index: 0)
-            computeEncoder.setTexture(outTex, index: 1)
-            computeEncoder.setBytes(&simUniforms, length: MemoryLayout<SimUniforms>.size, index: 0)
-            
-            let w = simPipelineState.threadExecutionWidth
-            let h = simPipelineState.maxTotalThreadsPerThreadgroup / w
-            let threadsPerGroup = MTLSizeMake(w, h, 1)
-            let threadsPerGrid = MTLSizeMake(inTex.width, inTex.height, 1)
-            computeEncoder.dispatchThreads(threadsPerGrid, threadsPerThreadgroup: threadsPerGroup)
-            
-            computeEncoder.endEncoding()
-            textureIndex = 1 - textureIndex
+        if (simSettings.maxSimSteps == 0 || currentStep < simSettings.maxSimSteps) {
+            for _ in 0..<simSettings.simSubSteps {
+                let inTex = textureIndex == 0 ? tex0 : tex1
+                let outTex = textureIndex == 0 ? tex1 : tex0
+                
+                guard let computeEncoder = commandBuffer.makeComputeCommandEncoder() else { break }
+                computeEncoder.setComputePipelineState(simPipelineState)
+                computeEncoder.setTexture(inTex, index: 0)
+                computeEncoder.setTexture(outTex, index: 1)
+                computeEncoder.setBytes(&simUniforms, length: MemoryLayout<SimUniforms>.size, index: 0)
+                
+                let w = simPipelineState.threadExecutionWidth
+                let h = simPipelineState.maxTotalThreadsPerThreadgroup / w
+                let threadsPerGroup = MTLSizeMake(w, h, 1)
+                let threadsPerGrid = MTLSizeMake(inTex.width, inTex.height, 1)
+                computeEncoder.dispatchThreads(threadsPerGrid, threadsPerThreadgroup: threadsPerGroup)
+                
+                computeEncoder.endEncoding()
+                textureIndex = 1 - textureIndex
+                currentStep += 1
+            }
         }
         
         // Display Step
@@ -253,13 +282,22 @@ class Renderer: NSObject, MTKViewDelegate {
     }
 }
 
+struct SimSettings {
+    var resolution: Int
+    var maxSimSteps: Int
+    var simSubSteps: Int
+}
+
 struct InitUniforms {
     var rect: simd_float4
 }
 
 struct SimUniforms {
-    var feed: Float
-    var kill: Float
+    var feed: Float16
+    var kill: Float16
+    var feed2: Float16 = 0.0
+    var kill2: Float16 = 0.0
+    var threshold: Float16 = 1.0
 }
 
 struct RenderUniforms {

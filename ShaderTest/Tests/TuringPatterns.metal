@@ -73,8 +73,11 @@ half2 laplacian(texture2d<half, access::read> tex, uint2 pos) {
 }
 
 struct SimUniforms {
-    float feed;
-    float kill;
+    half feed;
+    half kill;
+    half feed2;
+    half kill2;
+    half threshold;
 };
 
 [[kernel]]
@@ -82,10 +85,16 @@ void reaction_diffusion(texture2d<half, access::read> inTexture [[texture(0)]],
                         texture2d<half, access::write> outTexture [[texture(1)]],
                         constant SimUniforms &simUniforms [[buffer(0)]],
                         uint2 gid [[thread_position_in_grid]]) {
+    half2 uv = half2(gid) / half2(outTexture.get_width(), outTexture.get_height());
+    
     half dt = 0.5;
     half da = 1.0, db = 0.5;
-    half feed = simUniforms.feed, kill = simUniforms.kill;
-//    half feed = 0.055, kill = 0.062;
+    
+    half threshold = smoothstep(half(simUniforms.threshold-0.05),
+                                half(simUniforms.threshold+0.5),
+                                half(1.0 - uv.y));
+    half feed = mix(simUniforms.feed, simUniforms.feed2, threshold);
+    half kill = mix(simUniforms.kill, simUniforms.kill2, threshold);
 
     half2 state = inTexture.read(gid).xy;
     half2 l = laplacian(inTexture, gid);
